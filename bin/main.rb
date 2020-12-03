@@ -1,101 +1,44 @@
 #!/usr/bin/env ruby
+require_relative '../lib/board'
+require_relative '../lib/player'
+require_relative '../lib/game'
 
 puts 'Welcome to Tic-Tac-Toe'
 puts
-puts 'Input player names first'
 
-# get player names
+def valid_sign?(input)
+  input.length == 1
+end
 
-puts 'Input player 1 name: '
-player1 = gets.chomp
-puts
-puts 'Input player 2 name: '
-player2 = gets.chomp
+print 'Enter Name for player1: '
+@name1 = gets.chomp
+print 'Enter Sign: '
+@sign1 = gets.chomp
 
-puts
-# Player 1 starts player 1 = X player 2 = Y
+until valid_sign?(@sign1)
+  print 'Invalid sign, Enter another sign for youself: '
+  @sign1 = gets.chomp
+end
 
-puts "#{player1}'s Turn'"
-puts
-puts "#{player1} inpur a number from 1 to 9"
+player1 = Player.new(@name1, @sign1)
 
-board = " x |   |
------------
-   |   |
------------
-   |   |    "
+print 'Enter Name for player2: '
+@name2 = gets.chomp
+while @name1 == @name2
+  print 'This name is already taken Enter another name: '
+  @name2 = gets.chomp
+end
 
-puts board
+print 'Enter Sign: '
+@sign2 = gets.chomp
+while (@sign1 == @sign2) || !valid_sign?(@sign2)
+  print 'Invalid sign. Enter another sign for youself: '
+  @sign2 = gets.chomp
+end
 
-puts
-# Player 2 input
+player2 = Player.new(@name2, @sign2)
+puts "Game started by #{player1.name} and #{player2.name}"
 
-puts "#{player2}'s Turn"
-puts
-puts "#{player2} input a number from 1 to 9"
-
-board = "   |   |
------------
-   | O |
------------
-   |   |    "
-
-puts board
-
-puts
-# Player 1 input
-
-puts "#{player1}'s Turn"
-puts
-puts "#{player1} input a number from 1 to 9"
-puts
-puts 'Invalid input: please input another number from 1 to 9'
-
-board = "   |   |
------------
-   | O |
------------
-   |   |    "
-
-puts board
-
-puts
-# Player 1 input
-
-puts "#{player1}'s Turn"
-puts
-puts "#{player1} input a number from 1 to 9"
-puts
-puts 'You have made a winning move!'
-
-board = "   |   |
------------
-   |  |
------------
-   |   | X  "
-
-puts board
-
-puts
-# Player 2 input
-
-puts "#{player2}'s Turn"
-puts
-puts "#{player2} input a number from 1 to 9"
-puts
-puts 'You have rached a draw!'
-
-board = "   | X |
------------
-   |  |
------------
-   |   |   "
-
-puts board
-
-puts
-# declare winner
-
-puts "#{player1} is the winner"
-puts "#{player2} is the winner"
-puts "It's a draw!"
+game = Game.new(player1, player2)
+game.display_board
+game.play
