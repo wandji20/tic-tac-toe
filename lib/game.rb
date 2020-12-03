@@ -34,7 +34,7 @@ class Game < Board
       puts "Congratulations #{@current_player.name} you are the winner."
     else
       puts 'Its a draw, better luck next time !!'
-    end 
+    end
   end
 
   WIN_COMBINATIONS = [
@@ -54,5 +54,17 @@ class Game < Board
 
   def full?
     @turn_count == 9
+  end
+
+  def won?
+    WIN_COMBINATIONS.detect do |combo|
+      @board[combo[0]] == @board[combo[1]] &&
+        @board[combo[1]] == @board[combo[2]] &&
+        position_taken?(combo[0])
+    end
+  end
+
+  def over?
+    won? || full? || draw?
   end
 end
