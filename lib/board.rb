@@ -7,9 +7,11 @@ class Board
     @player2 = player2
   end
 
-  # rubocop:disable Layout/LineLength
   def display_board
-    "  #{@board[0]} | #{@board[1]} | #{@board[2]} \n ---+---+--- \n  #{@board[3]} | #{@board[4]} | #{@board[5]} \n ---+---+--- \n  #{@board[6]} | #{@board[7]} | #{@board[8]} "
+    [" #{@board[0]} | #{@board[1]} | #{@board[2]} ",
+     '-----------',
+     " #{@board[3]} | #{@board[4]} | #{@board[5]} ",
+     '-----------',
+     " #{@board[6]} | #{@board[7]} | #{@board[8]} "]
   end
-  # rubocop:enable Layout/LineLength
 end
