@@ -11,5 +11,3 @@ class Player
     puts "Name : #{@name}, Sign: #{@sign}"
   end
 end
-
-
