@@ -19,4 +19,21 @@ class Game < Board
       turn
     end
   end
+
+  def play
+    @turn_count = 0
+    until over?
+      @turn_count += 1
+      turn
+      puts '#################'
+      display_board
+    end
+    print 'Game Over '
+
+    if won?
+      puts "Congratulations #{@current_player.name} you are the winner."
+    else
+      puts 'Its a draw, better luck next time !!'
+    end
+  end
 end
