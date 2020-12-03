@@ -53,23 +53,17 @@ def turn
   end
 end
 
-def play
+def turn_counter
   @turn_count = 0
   until over?
     @turn_count += 1
     turn
     puts '#################'
-    display_board
+    puts display_board
   end
-  print 'Game Over '
-
-  if won?
-    puts "Congratulations #{@current_player.name} you are the winner."
-  else
-    puts 'Its a draw, better luck next time !!'
-  end
+  'Game Over '
 end
 
 game = Game.new(player1, player2)
 game.display_board
-game.play
+puts game.play

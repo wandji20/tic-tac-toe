@@ -7,6 +7,16 @@ class Game < Board
     input.between?(0, 8) && !position_taken?(input)
   end
 
+  def play
+    turn_counter
+
+    if won?
+      "Congratulations #{@current_player.name} you are the winner."
+    else
+      'Its a draw, better luck next time !!'
+    end
+  end
+
   WIN_COMBINATIONS = [
     [0, 1, 2],
     [3, 4, 5],
