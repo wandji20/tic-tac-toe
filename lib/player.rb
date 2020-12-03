@@ -6,8 +6,4 @@ class Player
     @name = name
     @sign = sign
   end
-
-  def print()
-    puts "Name : #{@name}, Sign: #{@sign}"
-  end
 end
