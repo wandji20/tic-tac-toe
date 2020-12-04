@@ -1,101 +1,86 @@
 #!/usr/bin/env ruby
+require_relative '../lib/board'
+require_relative '../lib/player'
+require_relative '../lib/game'
 
+puts '######################'
 puts 'Welcome to Tic-Tac-Toe'
 puts
-puts 'Input player names first'
 
-# get player names
+def valid_sign?(input)
+  input.length == 1 && input =~ /[A-Za-z]/ && input != ~ /\s/
+end
 
-puts 'Input player 1 name: '
-player1 = gets.chomp
-puts
-puts 'Input player 2 name: '
-player2 = gets.chomp
+def valid_name?(name)
+  name =~ /[A-Za-z]/ && name != ~ /\s/
+end
 
-puts
-# Player 1 starts player 1 = X player 2 = Y
+print 'Enter Name for player1: '
+name1 = gets.strip
 
-puts "#{player1}'s Turn'"
-puts
-puts "#{player1} inpur a number from 1 to 9"
+until valid_name?(name1)
+  print 'Invalid name, Enter another name for youself: '
+  name1 = gets.strip
+end
 
-board = " x |   |
------------
-   |   |
------------
-   |   |    "
+print 'Enter Sign: '
+sign1 = gets.strip
 
-puts board
+until valid_sign?(sign1)
+  print 'Invalid sign, Enter another sign for youself: '
+  sign1 = gets.strip
+end
 
-puts
-# Player 2 input
+player1 = Player.new(name1, sign1)
 
-puts "#{player2}'s Turn"
-puts
-puts "#{player2} input a number from 1 to 9"
+print 'Enter Name for player2: '
+name2 = gets.strip
 
-board = "   |   |
------------
-   | O |
------------
-   |   |    "
+until valid_name?(name2)
+  print 'Invalid name, Enter another name for youself: '
+  name2 = gets.strip
+end
 
-puts board
+while name1 == name2
+  print 'This name is already taken Enter another name: '
+  name2 = gets.strip
+end
 
-puts
-# Player 1 input
+print 'Enter Sign: '
+sign2 = gets.strip
 
-puts "#{player1}'s Turn"
-puts
-puts "#{player1} input a number from 1 to 9"
-puts
-puts 'Invalid input: please input another number from 1 to 9'
+while (sign1 == sign2) || !valid_sign?(sign2)
+  print 'Invalid sign. Enter another sign for youself: '
+  sign2 = gets.strip
+end
 
-board = "   |   |
------------
-   | O |
------------
-   |   |    "
+player2 = Player.new(name2, sign2)
+puts "Game started by #{player1.name} and #{player2.name}"
 
-puts board
+def turn
+  @current_player = @turn_count.odd? ? @player1 : @player2
+  print "#{@current_player.name}, Please choose a number between 1-9: "
+  position = gets.strip.to_i
+  position -= 1
+  if valid_move?(position)
+    @board[position] = @current_player.sign
+  else
+    puts 'invalid position or input'
+    turn
+  end
+end
 
-puts
-# Player 1 input
+def turn_counter
+  @turn_count = 0
+  until over?
+    @turn_count += 1
+    turn
+    puts '#################'
+    puts display_board
+  end
+  puts 'Game Over '
+end
 
-puts "#{player1}'s Turn"
-puts
-puts "#{player1} input a number from 1 to 9"
-puts
-puts 'You have made a winning move!'
-
-board = "   |   |
------------
-   |  |
------------
-   |   | X  "
-
-puts board
-
-puts
-# Player 2 input
-
-puts "#{player2}'s Turn"
-puts
-puts "#{player2} input a number from 1 to 9"
-puts
-puts 'You have rached a draw!'
-
-board = "   | X |
------------
-   |  |
------------
-   |   |   "
-
-puts board
-
-puts
-# declare winner
-
-puts "#{player1} is the winner"
-puts "#{player2} is the winner"
-puts "It's a draw!"
+game = Game.new(player1, player2)
+game.display_board
+puts game.play
