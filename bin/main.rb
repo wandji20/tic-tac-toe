@@ -75,8 +75,9 @@ def turn_counter
   until over?
     @turn_count += 1
     turn
-    puts '#################'
+    puts '############'
     puts display_board
+    puts '############'
   end
   puts 'Game Over '
 end
