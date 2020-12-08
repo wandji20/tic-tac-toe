@@ -7,13 +7,13 @@ puts '######################'
 puts 'Welcome to Tic-Tac-Toe'
 puts
 
-def valid_sign?(input)
-  input.length == 1 && input =~ /[A-Za-z]/ && input != ~ /\s/
-end
-
-def valid_name?(name)
-  name =~ /[A-Za-z]/ && name != ~ /\s/
-end
+# def valid_sign?(input)
+#   input.length == 1 && input =~ /[A-Za-z]/ && input != ~ /\s/
+# end
+# 
+# def valid_name?(name)
+#   name =~ /[A-Za-z]/ && name != ~ /\s/
+# end
 
 print 'Enter Name for player1: '
 name1 = gets.strip
