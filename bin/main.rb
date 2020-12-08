@@ -7,13 +7,13 @@ puts '######################'
 puts 'Welcome to Tic-Tac-Toe'
 puts
 
-# def valid_sign?(input)
-#   input.length == 1 && input =~ /[A-Za-z]/ && input != ~ /\s/
-# end
-# 
-# def valid_name?(name)
-#   name =~ /[A-Za-z]/ && name != ~ /\s/
-# end
+def valid_sign?(input)
+  input.length == 1 && input =~ /[A-Za-z]/ && input != ~ /\s/
+end
+
+def valid_name?(name)
+  name =~ /[A-Za-z]/ && name != ~ /\s/
+end
 
 print 'Enter Name for player1: '
 name1 = gets.strip
@@ -30,8 +30,6 @@ until valid_sign?(sign1)
   print 'Invalid sign, Enter another sign for youself: '
   sign1 = gets.strip
 end
-
-player1 = Player.new(name1, sign1)
 
 print 'Enter Name for player2: '
 name2 = gets.strip

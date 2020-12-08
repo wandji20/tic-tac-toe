@@ -1,3 +1,5 @@
+require_relative './board'
+
 class Game < Board
   def position_taken?(input)
     @board[input] != ' '
