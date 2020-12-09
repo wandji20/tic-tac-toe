@@ -3,17 +3,19 @@ require_relative '../lib/game'
 require_relative '../lib/board'
 
 describe Player do
+ 
+  subject { Player.new("#{name}")}
   describe '#valid_name?' do
+  let (:name) {'wandji'}
     it 'returns true if name is valid' do
-      player1 = Player.new('wandji')
-      expect(player1.valid_name?).to eq(true)
+      expect(subject.valid_name?).to eq(true)
     end
   end
   describe '#valid_sign?' do
+  let (:name) {'elisha'}
     it 'it returns true if the sign is correct' do
-      player1 = Player.new('elisha')
-      player1.sign = 'O'
-      expect(player1.valid_sign?).to eq(true)
+      subject.sign = 'O'
+      expect(subject.valid_sign?).to eq(true)
     end
   end
 end
