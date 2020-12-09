@@ -12,13 +12,13 @@ describe Player do
 end
 
 my_game = Game.new('e', 'w')
+my_game.board = ['X ', 'X ', 'O ', 'O ', 'O ', 'O ', ' ', ' ', ' ']
 describe Game do
-  let (:my_game.board) { ['X ', 'X ', 'X ', ' ', ' ', ' ', ' ', ' ', ' '] }
   it 'Returns true for valid moves' do
     expect(my_game.valid_move?(1)).to eq(false)
   end
   it 'returns true when the win combination is found' do
-    expect(my_game.won?).to eq([3, 4, 5])
+    expect(my_game.won?).to eq([3,4,5])
   end
 end
 
