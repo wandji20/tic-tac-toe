@@ -9,6 +9,13 @@ describe Player do
       expect(player1.valid_name?).to eq(true)
     end
   end
+  describe '#valid_sign?' do
+    it 'it returns true if the sign is correct' do
+      player1 = Player.new('elisha')
+      player1.sign = 'O'
+      expect(player1.valid_sign?).to eq(true)
+    end
+  end
 end
 
 my_game = Game.new('e', 'w')
