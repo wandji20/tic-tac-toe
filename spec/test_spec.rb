@@ -18,7 +18,10 @@ describe Game do
     expect(my_game.valid_move?(1)).to eq(false)
   end
   it 'returns true when the win combination is found' do
-    expect(my_game.won?).to eq([3,4,5])
+    expect(my_game.won?).to eq([3, 4, 5])
+  end
+  it 'returns true if position is taken' do
+    expect(my_game.position_taken?(2)).to eq(true)
   end
 end
 
