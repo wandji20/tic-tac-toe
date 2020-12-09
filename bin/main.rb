@@ -7,54 +7,44 @@ puts '######################'
 puts 'Welcome to Tic-Tac-Toe'
 puts
 
-def valid_sign?(input)
-  input.length == 1 && input =~ /[A-Za-z]/ && input != ~ /\s/
-end
-
-def valid_name?(name)
-  name =~ /[A-Za-z]/ && name != ~ /\s/
-end
-
 print 'Enter Name for player1: '
 name1 = gets.strip
 
-until valid_name?(name1)
+player1 = Player.new(name1)
+
+until player1.valid_name?
   print 'Invalid name, Enter another name for youself: '
   name1 = gets.strip
+  player1.name = name1
 end
 
 print 'Enter Sign: '
 sign1 = gets.strip
+player1.sign = sign1
 
-until valid_sign?(sign1)
+until player1.valid_sign?
   print 'Invalid sign, Enter another sign for youself: '
-  sign1 = gets.strip
+  player1.sign = gets.strip
 end
-
-player1 = Player.new(name1, sign1)
 
 print 'Enter Name for player2: '
 name2 = gets.strip
-
-until valid_name?(name2)
+player2 = Player.new(name2)
+until player2.valid_name? && player1.name != player2.name
   print 'Invalid name, Enter another name for youself: '
-  name2 = gets.strip
-end
-
-while name1 == name2
-  print 'This name is already taken Enter another name: '
-  name2 = gets.strip
+  name1 = gets.strip
+  player2.name = name1
 end
 
 print 'Enter Sign: '
 sign2 = gets.strip
+player2.sign = sign2
 
-while (sign1 == sign2) || !valid_sign?(sign2)
+while (player1.sign == player2.sign) || !player2.valid_sign?
   print 'Invalid sign. Enter another sign for youself: '
-  sign2 = gets.strip
+  player2.sign = gets.strip
 end
 
-player2 = Player.new(name2, sign2)
 puts "Game started by #{player1.name} and #{player2.name}"
 
 def turn
