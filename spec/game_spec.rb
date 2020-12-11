@@ -24,4 +24,18 @@ describe Game do
       expect(game.position_taken?(8)).to eql(false)
     end
   end
+
+  describe '#valid_move?' do
+    it 'returns false if input is not between 1 and 9' do
+      expect(game.valid_move?(10)).to eql(false)
+    end
+
+    it 'returns true if input is between 1 and 9' do
+      expect(game.valid_move?(5)).to eql(true)
+    end
+
+    it 'returns false if input is not between 1 and 9' do
+      expect(game.valid_move?(15)).to eql(false)
+    end
+  end
 end
