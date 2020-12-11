@@ -29,5 +29,27 @@ describe Game do
                                           '   |   |   '
                                         ])
     end
+
+    it 'updates every turn' do
+      game.board = ['X', 'X', '', 'O', 'O', 'O', 'X', ' ', ' ']
+      expect(game.display_board).to eql([
+                                          ' X | X |  ',
+                                          '-----------',
+                                          ' O | O | O ',
+                                          '-----------',
+                                          ' X |   |   '
+                                        ])
+    end
+
+    it 'updates every turn' do
+      game.board = []
+      expect(game.display_board).to eql([
+                                          '  |  |  ',
+                                          '-----------',
+                                          '  |  |  ',
+                                          '-----------',
+                                          '  |  |  '
+                                        ])
+    end
   end
 end
