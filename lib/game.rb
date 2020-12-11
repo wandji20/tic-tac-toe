@@ -30,20 +30,22 @@ class Game < Board
     [0, 4, 8]
   ].freeze
 
-  def draw?
-    !won? && full?
-  end
-
-  def full?
-    @turn_count == 9
-  end
-
   def won?
     WIN_COMBINATIONS.detect do |combo|
       @board[combo[0]] == @board[combo[1]] &&
         @board[combo[1]] == @board[combo[2]] &&
         position_taken?(combo[0])
     end
+  end
+
+  private
+
+  def draw?
+    !won? && full?
+  end
+
+  def full?
+    @turn_count == 9
   end
 
   def over?

@@ -47,6 +47,8 @@ end
 
 puts "Game started by #{player1.name} and #{player2.name}"
 
+private
+
 def turn
   @current_player = @turn_count.odd? ? @player1 : @player2
   print "#{@current_player.name}, Please choose a number between 1-9: "
